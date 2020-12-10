@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-d
+	<form action="insert_pizza">
+		
+	</form>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
-<h3>지점별매출현황</h3>
+<h3>지점별 매출 현황</h3>
 <table border="1">
  	<tr>
  		<td>지점코드</td>
@@ -32,7 +32,7 @@
  					<tr>
  						<td><%=rs.getString(1) %></td>
  						<td><%=rs.getString(2) %></td>
- 						<td><%=String.format("\\%d", rs.getInt(3)) %></td>
+ 						<td><%=String.format("\\%,d", rs.getInt(3)) %></td>
  					</tr>
  				
  				<%
