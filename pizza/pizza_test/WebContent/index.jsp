@@ -20,7 +20,7 @@
 		%><%@include file="page/pizza_lookup.jsp" %> <%
 		break;
 		case "pizza_lookup_by_salelist":
-		%><%@include file="page/pizza_lookup_by_salelist.jsp" %> <%
+		%><%@include file="page/pizza_lookup_by_pizza.jsp" %> <%
 		break;
 		case "pizza_lookup_by_shop":
 		%><%@include file="page/pizza_lookup_by_shop.jsp" %> <%
