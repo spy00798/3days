@@ -20,41 +20,26 @@
  			Statement stmt = con.createStatement();
  			
  			String query = "SELECT "+
- 			"SALENO, SCODE, SALEDATE, TBL_PIZZA_01.PCODE, PNAME, AMOUNT, COST*AMOUNT "+
+ 			"SALENO, TBL_SHOP_01.SCODE, SNAME, SALEDATE, TBL_PIZZA_01.PCODE, PNAME, AMOUNT, COST*AMOUNT "+
 			"FROM "+
- 					"TBL_PIZZA_01, TBL_SALELIST_01 "+
- 			"WHERE TBL_PIZZA_01.PCODE = TBL_SALELIST_01.PCODE";
+ 					"TBL_PIZZA_01, TBL_SALELIST_01, TBL_SHOP_01 "+
+ 			"WHERE TBL_PIZZA_01.PCODE = TBL_SALELIST_01.PCODE "+
+ 					"AND "+
+ 					"TBL_SHOP_01.SCODE = TBL_SALELIST_01.SCODE "+
+ 							"ORDER BY " +
+ 		 	                "TBL_SALELIST_01.SALENO ";
  			ResultSet rs = stmt.executeQuery(query);
  		
  			while (rs.next()) {
- 				String scode = null;
- 				switch(rs.getString(2)) {
- 				
- 				case "S001":
- 					scode = "강남점";
- 					break;
- 				case "S002":
- 					scode = "강서점";
- 					break;
- 				case "S003":
- 					scode = "강동점";
- 					break;
- 				case "S004":
- 					scode = "영동점";
- 				case "S005":
- 					scode = "시청점";
- 				case "S006":
- 					scode = "인천점";
- 				}
  				%> 
  					<tr>
  						<td><%=rs.getString(1) %></td>
- 						<td><%=rs.getString(2) + "-" + scode %></td>
- 						<td><%=rs.getDate(3) %></td>
- 						<td><%=rs.getString(4) %></td>
+ 						<td><%=rs.getString(2) + "-" + rs.getString(3)  %></td>
+ 						<td><%=rs.getDate(4) %></td>
  						<td><%=rs.getString(5) %></td>
  						<td><%=rs.getString(6) %></td>
- 						<td><%=String.format( "\\%,d", rs.getInt(7)) %></td>
+ 						<td><%=rs.getString(7) %></td>
+ 						<td><%=String.format( "\\%,d", rs.getInt(8)) %></td>
  					</tr>
  				
  				<%
