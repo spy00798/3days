@@ -6,7 +6,7 @@ String saleno = request.getParameter("saleno");
 String scode = request.getParameter("scode");
 String sale_date = request.getParameter("sale_date");
 String pcode = request.getParameter("pcode");
-String amount = request.getParameter("amount");
+int amount = Integer.parseInt(request.getParameter("amount"));
 
 try {
 		Class.forName("oracle.jdbc.OracleDriver");
@@ -14,23 +14,16 @@ try {
 		
 		Statement stmt = con.createStatement();
 		
-		String query = "INSERT INTO TBL_SALELIST_01c";
-		ResultSet rs = stmt.executeQuery(query);
+		String query = "INSERT INTO TBL_SALELIST_01(SALENO, SCODE, SALEDATE, PCODE, AMOUNT) VALUES('%s', '%s', '%s', '%s', '%d')";
+		ResultSet rs = stmt.executeQuery(String.format(query, saleno, scode, sale_date, pcode, amount));
 	
-		while (rs.next()) {
-			%> 
-				<tr>
-					<td><%=rs.getString(1) %></td>
-					<td><%=rs.getString(2) %></td>
-					<td><%=String.format("\\%,d", rs.getInt(3)) %></td>
-				</tr>
-			
-			<%
-		
-		}
 		stmt.close();
 		con.close();
-	} catch (Exception e) {
+		
+	} 
+catch (Exception e) {
 		e.printStackTrace();
 	}
+
+response.sendRedirect("../index.jsp?section=pizza_lookup");
 %>
